@@ -1,0 +1,6 @@
+## Interface: 11200
+## Title: Clean Up GUI
+## Author: shirsig
+## SavedVariablesPerCharacter: Clean_Up_GUI_Settings
+Clean_Up.lua
+Clean_Up_GUI.lua
