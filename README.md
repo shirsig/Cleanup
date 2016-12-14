@@ -12,12 +12,9 @@ This addOn automatically stacks and sorts your items.
 **/cleanupbank** (starts button placement mode)
 
 #### Button placement mode
-**Right-click** to iterate through the frames below the cursor to choose a parent for the button.
-**Scroll** to resize the button.
-**Left-click** to place the button.
-
-**Alt-left-click** on a bag item will permanently assign its slot to that item.<br/>
-**Alt-right-click** on a bag slot will clear its assignment.
+Use the mouse wheel to iterate through the visible frames to choose a parent for the button.
+When holding down ctrl the mouse wheel will resize the button instead.
+Finally click to place the button.
 
 ### Sort order
 
