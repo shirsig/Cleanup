@@ -117,10 +117,11 @@ function CollectFrames()
 end
 
 function CreateButtonPlacer()
-	local frame = CreateFrame('EditBox', nil, UIParent)
+	local frame = CreateFrame('Frame', nil, UIParent)
 	buttonPlacer = frame
+	frame:EnableMouse(true)
 	frame:EnableMouseWheel(true)
-	frame:SetTextColor(0, 0, 0, 0)
+	frame:EnableKeyboard(true)
 	frame:SetFrameStrata'FULLSCREEN_DIALOG'
 	frame:SetAllPoints()
 	frame:Hide()
@@ -146,7 +147,7 @@ function CreateButtonPlacer()
 		CollectFrames()
 		target()
 	end)
-	frame:SetScript('OnEscapePressed', function() this:Hide() end)
+	frame:SetScript('OnKeyDown', function() if arg1 == 'ESCAPE' then this:Hide() end end)
 	frame:SetScript('OnMouseWheel', function()
 		if IsControlKeyDown() then
 			this.scale = max(0, this.scale + arg1 * .05)
