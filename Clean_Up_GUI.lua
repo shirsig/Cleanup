@@ -54,6 +54,12 @@ function SetupSlash()
         Clean_Up_GUI_Settings.reversed = not Clean_Up_GUI_Settings.reversed
         Print('Sort order: ' .. (Clean_Up_GUI_Settings.reversed and 'Reversed' or 'Standard'))
 	end
+    
+    _G.SLASH_BAGSORT1 = '/bagsort'
+	function _G.SlashCmdList.BAGSORT(arg)
+		PlaySoundFile[[Interface\AddOns\Clean_Up_GUI\UI_BagSorting_01.ogg]]
+		Clean_Up('bags', Clean_Up_GUI_Settings.reversed)
+	end
 end
 
 function CleanUpButton(parent)
