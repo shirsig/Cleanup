@@ -7,7 +7,7 @@ do
 	f:RegisterEvent'ADDON_LOADED'
 end
 
-_G.SortBags_GUI = {
+_G.Cleanup_GUI = {
 	BAGS = {},
 	BANK = {},
 }
@@ -22,20 +22,20 @@ BANK = {
 	TOOLTIP = 'Clean Up Bank',
 }
 
-_G.SLASH_SORTBAGS1 = '/sortbags'
-function _G.SlashCmdList.SORTBAGS(arg)
+_G.SLASH_CLEANUPBAGS1 = '/cleanupbags'
+function _G.SlashCmdList.CLEANUPBAGS(arg)
 	buttonPlacer.key = 'BAGS'
 	buttonPlacer:Show()
 end
 
-_G.SLASH_SORTBANKBAGS1 = '/sortbankbags'
-function _G.SlashCmdList.SORTBANKBAGS(arg)
+_G.SLASH_CLEANUPBANK1 = '/cleanupbank'
+function _G.SlashCmdList.CLEANUPBANK(arg)
 	buttonPlacer.key = 'BANK'
 	buttonPlacer:Show()
 end
 
 function ADDON_LOADED()
-	if arg1 ~= 'SortBags_GUI' then
+	if arg1 ~= 'Cleanup_GUI' then
 		return
 	end
 
@@ -48,9 +48,9 @@ function CleanupButton(parent)
 	local button = CreateFrame('Button', nil, parent)
 	button:SetWidth(28)
 	button:SetHeight(26)
-	button:SetNormalTexture[[Interface\AddOns\SortBags_GUI\Bags]]
+	button:SetNormalTexture[[Interface\AddOns\Cleanup_GUI\Bags]]
 	button:GetNormalTexture():SetTexCoord(.12109375, .23046875, .7265625, .9296875)
-	button:SetPushedTexture[[Interface\AddOns\SortBags_GUI\Bags]]
+	button:SetPushedTexture[[Interface\AddOns\Cleanup_GUI\Bags]]
 	button:GetPushedTexture():SetTexCoord(.00390625, .11328125, .7265625, .9296875)
 	button:SetHighlightTexture[[Interface\Buttons\ButtonHilight-Square]]
 	button:GetHighlightTexture():ClearAllPoints()
@@ -61,7 +61,7 @@ function CleanupButton(parent)
 end
 
 function CreateButton(key)
-	local settings = SortBags_GUI[key]
+	local settings = Cleanup_GUI[key]
 	local button = CleanupButton()
 	_M[key].button = button
 	button:SetScript('OnUpdate', function()
@@ -71,7 +71,7 @@ function CreateButton(key)
 		end
 	end)
 	button:SetScript('OnClick', function()
-		PlaySoundFile[[Interface\AddOns\SortBags_GUI\UI_BagSorting_01.ogg]]
+		PlaySoundFile[[Interface\AddOns\Cleanup_GUI\UI_BagSorting_01.ogg]]
 		_M[key].FUNCTION()
 	end)
 	button:SetScript('OnEnter', function()
@@ -85,7 +85,7 @@ function CreateButton(key)
 end
 
 function UpdateButton(key)
-	local button, settings = _M[key].button, SortBags_GUI[key]
+	local button, settings = _M[key].button, Cleanup_GUI[key]
 	button:SetParent(settings.parent)
 	button:SetPoint('CENTER', unpack(settings.position))
 	button:SetScale(settings.scale)
@@ -154,7 +154,7 @@ function CreateButtonPlacer()
 		this:Hide()
 		local x, y = GetCursorPosition()
 		local targetScale, targetX, targetY = this.target:GetEffectiveScale(), this.target:GetCenter()
-		SortBags_GUI[this.key] = {parent=this.target:GetName(), position={(x/targetScale-targetX)/this.scale, (y/targetScale-targetY)/this.scale}, scale=this.scale}
+		Cleanup_GUI[this.key] = {parent=this.target:GetName(), position={(x/targetScale-targetX)/this.scale, (y/targetScale-targetY)/this.scale}, scale=this.scale}
 		UpdateButton(this.key)
 	end)
 	frame:SetScript('OnUpdate', function()

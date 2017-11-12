@@ -1,6 +1,0 @@
-## Interface: 11200
-## Title: SortBags_GUI
-## Author: shirsig
-## Dependencies: SortBags
-## SavedVariablesPerCharacter: SortBags_GUI
-SortBags_GUI.lua
