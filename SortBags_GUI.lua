@@ -72,8 +72,7 @@ function CreateButton(key)
 	end)
 	button:SetScript('OnClick', function()
 		PlaySoundFile[[Interface\AddOns\Clean_Up_GUI\UI_BagSorting_01.ogg]]
-		_M[key].FUNCTION
-		Clean_Up(key, SortBags_GUI.reversed)
+		_M[key].FUNCTION()
 	end)
 	button:SetScript('OnEnter', function()
 		GameTooltip:SetOwner(this)
