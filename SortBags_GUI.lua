@@ -22,6 +22,18 @@ BANK = {
 	TOOLTIP = 'Clean Up Bank',
 }
 
+_G.SLASH_SORTBAGS1 = '/sortbags'
+function _G.SlashCmdList.SORTBAGS(arg)
+	buttonPlacer.key = 'BAGS'
+	buttonPlacer:Show()
+end
+
+_G.SLASH_SORTBANKBAGS1 = '/sortbankbags'
+function _G.SlashCmdList.SORTBANKBAGS(arg)
+	buttonPlacer.key = 'BANK'
+	buttonPlacer:Show()
+end
+
 function ADDON_LOADED()
 	if arg1 ~= 'SortBags_GUI' then
 		return
