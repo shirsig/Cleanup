@@ -1,4 +1,4 @@
-# Clean Up - WoW 1.12 addOn 
+# SortBags_GUI - WoW 1.12 addOn 
 
 This addOn automatically stacks and sorts your items.
 
@@ -7,9 +7,8 @@ This addOn automatically stacks and sorts your items.
 [Video demonstration](https://www.youtube.com/watch?v=DGjBcyg4cys) (The minimap button is from an older version)
 
 ### Commands
-**/cleanupreverse** (Makes the sorting start at the top of your bags instead of the bottom)<br/>
-**/cleanupbags** (starts button placement mode)<br/>
-**/cleanupbank** (starts button placement mode)
+**/sortbags** (starts button placement mode)<br/>
+**/sortbankbags** (starts button placement mode)
 
 #### Button placement mode
 Use the mouse wheel to iterate through the visible frames to choose a parent for the button.
