@@ -48,9 +48,9 @@ function CleanupButton(parent)
 	local button = CreateFrame('Button', nil, parent)
 	button:SetWidth(28)
 	button:SetHeight(26)
-	button:SetNormalTexture[[Interface\AddOns\Clean_Up_GUI\Bags]]
+	button:SetNormalTexture[[Interface\AddOns\SortBags_GUI\Bags]]
 	button:GetNormalTexture():SetTexCoord(.12109375, .23046875, .7265625, .9296875)
-	button:SetPushedTexture[[Interface\AddOns\Clean_Up_GUI\Bags]]
+	button:SetPushedTexture[[Interface\AddOns\SortBags_GUI\Bags]]
 	button:GetPushedTexture():SetTexCoord(.00390625, .11328125, .7265625, .9296875)
 	button:SetHighlightTexture[[Interface\Buttons\ButtonHilight-Square]]
 	button:GetHighlightTexture():ClearAllPoints()
@@ -71,7 +71,7 @@ function CreateButton(key)
 		end
 	end)
 	button:SetScript('OnClick', function()
-		PlaySoundFile[[Interface\AddOns\Clean_Up_GUI\UI_BagSorting_01.ogg]]
+		PlaySoundFile[[Interface\AddOns\SortBags_GUI\UI_BagSorting_01.ogg]]
 		_M[key].FUNCTION()
 	end)
 	button:SetScript('OnEnter', function()
