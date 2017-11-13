@@ -1,6 +1,0 @@
-## Interface: 11200
-## Title: Cleanup_GUI
-## Author: shirsig
-## Dependencies: Cleanup
-## SavedVariablesPerCharacter: Cleanup_GUI
-Cleanup_GUI.lua

@@ -1,0 +1,6 @@
+## Interface: 11200
+## Title: Cleanup
+## Author: shirsig
+## Dependencies: SortBags
+## SavedVariablesPerCharacter: Cleanup
+Cleanup.lua
