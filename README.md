@@ -31,8 +31,11 @@ Besides that, the primary sort order is:
 **consumables**<br/>
 **quest items**<br/>
 **high quality items** (which aren't in any other category)<br/>
+**enchanting materials**<br/>
+**herbs**<br/>
 **common quality items** (which aren't in any other category)<br/>
 **junk**<br/>
+**soul shards**<br/>
 **conjured items**
 
 The basic intuition for the primary sort order is how long items are expected to be kept around. The more "permanent" an item is the lower it is placed in your bags.
