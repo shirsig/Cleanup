@@ -17,7 +17,7 @@ Finally click to place the button.
 
 ### Sort order
 
-The highest priority are the custom assignments. The second highest is to fill special bags (e.g., herb bag).
+The highest priority is to fill special bags (e.g., herb bag) with fitting items.
 
 Besides that, the primary sort order is:
 
