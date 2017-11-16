@@ -1,4 +1,4 @@
-# Cleanup_GUI - WoW 1.12 addOn 
+# Cleanup - WoW 1.12 addOn 
 
 This addOn automatically stacks and sorts your items.
 
