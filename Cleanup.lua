@@ -3,7 +3,7 @@ setfenv(1, setmetatable(_M, {__index=_G}))
 
 do
 	local f = CreateFrame'Frame'
-	f:SetScript('OnEvent', function() _M[event](this) end)
+	f:SetScript('OnEvent', function(self, event, ...) _M[event](self, ...) end)
 	f:RegisterEvent'ADDON_LOADED'
 end
 
@@ -34,7 +34,7 @@ function _G.SlashCmdList.CLEANUPBANK(arg)
 	buttonPlacer:Show()
 end
 
-function ADDON_LOADED()
+function ADDON_LOADED(_, arg1)
 	if arg1 ~= 'Cleanup' then
 		return
 	end
@@ -64,18 +64,18 @@ function CreateButton(key)
 	local settings = Cleanup[key]
 	local button = CleanupButton()
 	_M[key].button = button
-	button:SetScript('OnUpdate', function()
+	button:SetScript('OnUpdate', function(self)
 		if settings.parent and getglobal(settings.parent) then
 			UpdateButton(key)
-			this:SetScript('OnUpdate', nil)
+			self:SetScript('OnUpdate', nil)
 		end
 	end)
 	button:SetScript('OnClick', function()
 		PlaySoundFile[[Interface\AddOns\Cleanup\UI_BagSorting_01.ogg]]
 		_M[key].FUNCTION()
 	end)
-	button:SetScript('OnEnter', function()
-		GameTooltip:SetOwner(this)
+	button:SetScript('OnEnter', function(self)
+		GameTooltip:SetOwner(self)
 		GameTooltip:AddLine(_M[key].TOOLTIP)
 		GameTooltip:Show()
 	end)
@@ -114,48 +114,49 @@ function CreateButtonPlacer()
 	frame:SetAllPoints()
 	frame:Hide()
 	local targetMarker = frame:CreateTexture()
-	targetMarker:SetTexture(1, 1, 0, .5)
+	targetMarker:SetColorTexture(1, 1, 0, .5)
 
 	local buttonPreview = CleanupButton(frame)
 	buttonPreview:EnableMouse(false)
 	buttonPreview:SetAlpha(.5)
 
-	local function target()
+	local function target(self)
 		local f = frames[frame.index]
 		frame.target = f
 		local scale, x, y = f:GetEffectiveScale(), GetCursorPosition()
 		targetMarker:SetAllPoints(f)
-		buttonPreview:SetScale(scale * this.scale)
-		RaidWarningFrame:AddMessage(f:GetName())
+		buttonPreview:SetScale(scale * self.scale)
+		RaidNotice_Clear(RaidWarningFrame)
+		RaidNotice_AddMessage(RaidWarningFrame, f:GetName(), ChatTypeInfo["SAY"])
 	end
 
-	frame:SetScript('OnShow', function()
-		this.scale = 1
-		this.index = 1
+	frame:SetScript('OnShow', function(self)
+		self.scale = 1
+		self.index = 1
 		CollectFrames()
-		target()
+		target(self)
 	end)
-	frame:SetScript('OnKeyDown', function() if arg1 == 'ESCAPE' then this:Hide() end end)
-	frame:SetScript('OnMouseWheel', function()
+	frame:SetScript('OnKeyDown', function(self, arg1) if arg1 == 'ESCAPE' then self:Hide() end end)
+	frame:SetScript('OnMouseWheel', function(self, arg1)
 		if IsControlKeyDown() then
-			this.scale = max(0, this.scale + arg1 * .05)
-			buttonPreview:SetScale(this.target:GetEffectiveScale() * this.scale)
+			self.scale = max(0, self.scale + arg1 * .05)
+			buttonPreview:SetScale(self.target:GetEffectiveScale() * self.scale)
 		else
-			this.index = this.index + arg1
-			if this.index < 1 then
-				this.index = getn(frames)
-			elseif this.index > getn(frames) then
-				this.index = 1
+			self.index = self.index + arg1
+			if self.index < 1 then
+				self.index = getn(frames)
+			elseif self.index > getn(frames) then
+				self.index = 1
 			end
-			target()
+			target(self)
 		end
 	end)
-	frame:SetScript('OnMouseDown', function()
-		this:Hide()
+	frame:SetScript('OnMouseDown', function(self)
+		self:Hide()
 		local x, y = GetCursorPosition()
-		local targetScale, targetX, targetY = this.target:GetEffectiveScale(), this.target:GetCenter()
-		Cleanup[this.key] = {parent=this.target:GetName(), position={(x/targetScale-targetX)/this.scale, (y/targetScale-targetY)/this.scale}, scale=this.scale}
-		UpdateButton(this.key)
+		local targetScale, targetX, targetY = self.target:GetEffectiveScale(), self.target:GetCenter()
+		Cleanup[self.key] = {parent=self.target:GetName(), position={(x/targetScale-targetX)/self.scale, (y/targetScale-targetY)/self.scale}, scale=self.scale}
+		UpdateButton(self.key)
 	end)
 	frame:SetScript('OnUpdate', function()
 		local scale, x, y = buttonPreview:GetEffectiveScale(), GetCursorPosition()
