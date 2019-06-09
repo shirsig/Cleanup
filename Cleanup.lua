@@ -144,8 +144,8 @@ function CreateButtonPlacer()
 		else
 			self.index = self.index + arg1
 			if self.index < 1 then
-				self.index = getn(frames)
-			elseif self.index > getn(frames) then
+				self.index = #frames
+			elseif self.index > #frames then
 				self.index = 1
 			end
 			target(self)
