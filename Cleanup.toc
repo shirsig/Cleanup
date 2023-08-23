@@ -1,6 +1,7 @@
-## Interface: 11306
+## Interface: 11404
+## Author: shirsig
 ## Title: Cleanup
-## Version: 1.0.3
+## Version: @project-version@
 ## Notes: Sorts and stacks your items
 ## Author: shirsig
 ## Dependencies: SortBags

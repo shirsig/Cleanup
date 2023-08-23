@@ -86,7 +86,7 @@ end
 
 function UpdateButton(key)
 	local button, settings = _M[key].button, Cleanup[key]
-	button:SetParent(settings.parent)
+	button:SetParent(_G[settings.parent])
 	button:SetPoint('CENTER', unpack(settings.position))
 	button:SetScale(settings.scale)
 	button:Show()
